@@ -35,36 +35,53 @@ class DoublyLinkedListTest {
     }
 
     @Test
+    void testInsertValueIntoEmptyList() {
+        Assertions.assertTrue(list.isEmpty());
+        list.insert(0.5);
+        Assertions.assertArrayEquals(new double[] { 0.5 }, list.asArray());
+    }
+
+    @Test
+    void testInsertElementIntoEmptyList() {
+        Assertions.assertTrue(list.isEmpty());
+        list.insert(new DoublyLinkedList.Element(0.5));
+        Assertions.assertArrayEquals(new double[] { 0.5 }, list.asArray());
+    }
+
+    @Test
     void testInsertNewMinimum() {
         // given: the list as four sorted elements
         Assertions.assertTrue(list.isEmpty());
-        list.append(new double[]{0.2, 0.4, 0.5, 0.8});
-        // when: inserting a new element with a value smaller than the minimum of the list
+        list.append(new double[] { 0.2, 0.4, 0.5, 0.8 });
+        // when: inserting a new element with a value smaller than the minimum of the
+        // list
         list.insert(new DoublyLinkedList.Element(0.1));
         // then: the new element is the start of the list
-        Assertions.assertArrayEquals(new double[]{0.1, 0.2, 0.4, 0.5, 0.8}, list.asArray());
+        Assertions.assertArrayEquals(new double[] { 0.1, 0.2, 0.4, 0.5, 0.8 }, list.asArray());
     }
 
     @Test
     void testInsertNewMaximum() {
         // given: the list as four sorted elements
         Assertions.assertTrue(list.isEmpty());
-        list.append(new double[]{0.2, 0.4, 0.5, 0.8});
-        // when: inserting a new element with a value greater than the maximum of the list
+        list.append(new double[] { 0.2, 0.4, 0.5, 0.8 });
+        // when: inserting a new element with a value greater than the maximum of the
+        // list
         list.insert(new DoublyLinkedList.Element(0.9));
         // then: the new element is the end of the list
-        Assertions.assertArrayEquals(new double[]{0.2, 0.4, 0.5, 0.8, 0.9}, list.asArray());
+        Assertions.assertArrayEquals(new double[] { 0.2, 0.4, 0.5, 0.8, 0.9 }, list.asArray());
     }
 
     @Test
     void testInsertNeitherMinimumNorMaximum() {
         // given: the list as four sorted elements
         Assertions.assertTrue(list.isEmpty());
-        list.append(new double[]{0.2, 0.4, 0.5, 0.8});
-        // when: inserting a new element with a value between the minimum and the maximum of the list
+        list.append(new double[] { 0.2, 0.4, 0.5, 0.8 });
+        // when: inserting a new element with a value between the minimum and the
+        // maximum of the list
         list.insert(new DoublyLinkedList.Element(0.6));
         // then: the new element is placed in the right position
-        Assertions.assertArrayEquals(new double[]{0.2, 0.4, 0.5, 0.6, 0.8}, list.asArray());
+        Assertions.assertArrayEquals(new double[] { 0.2, 0.4, 0.5, 0.6, 0.8 }, list.asArray());
     }
 
     @Test
@@ -72,7 +89,7 @@ class DoublyLinkedListTest {
         // give: an empty list and another list with three elements
         Assertions.assertTrue(list.isEmpty());
         DoublyLinkedList otherList = new DoublyLinkedList();
-        otherList.append(new double[]{0.9, 0.5, 0.4});
+        otherList.append(new double[] { 0.9, 0.5, 0.4 });
         // when: appending the first element from the other list
         // then: expect an exception to be raised
         var firstElement = otherList.getStart();
@@ -114,7 +131,8 @@ class DoublyLinkedListTest {
         list.append(0.5);
         // then: the list has two elements...
         Assertions.assertEquals(2, list.getLength());
-        // ...and the first element is the start and the second element is the end of the list
+        // ...and the first element is the start and the second element is the end of
+        // the list
         Assertions.assertEquals(0.9, list.getStart().getValue());
         Assertions.assertEquals(0.5, list.getEnd().getValue());
         // ...and they are correctly linked
@@ -134,7 +152,8 @@ class DoublyLinkedListTest {
         list.append(0.4);
         // then: the list has three elements...
         Assertions.assertEquals(3, list.getLength());
-        // ...and the first element is the start and the third element is the end of the list
+        // ...and the first element is the start and the third element is the end of the
+        // list
         Assertions.assertEquals(0.9, list.getStart().getValue());
         Assertions.assertEquals(0.4, list.getEnd().getValue());
         // ...and all elements are correctly linked
@@ -149,11 +168,11 @@ class DoublyLinkedListTest {
         // given: the list is empty
         Assertions.assertEquals(0, list.getLength());
         // then: the array representation of the list is equal to an empty array
-        Assertions.assertArrayEquals(new double[]{}, list.asArray());
+        Assertions.assertArrayEquals(new double[] {}, list.asArray());
         list.append(0.9);
         list.append(0.5);
         list.append(0.4);
-        Assertions.assertArrayEquals(new double[]{0.9, 0.5, 0.4}, list.asArray());
+        Assertions.assertArrayEquals(new double[] { 0.9, 0.5, 0.4 }, list.asArray());
     }
 
     @Test
@@ -164,8 +183,9 @@ class DoublyLinkedListTest {
         list.append(0.9);
         list.append(0.5);
         list.append(0.4);
-        // then: the array representation of the list is equal to the array with the elements in the same order
-        Assertions.assertArrayEquals(new double[]{0.9, 0.5, 0.4}, list.asArray());
+        // then: the array representation of the list is equal to the array with the
+        // elements in the same order
+        Assertions.assertArrayEquals(new double[] { 0.9, 0.5, 0.4 }, list.asArray());
     }
 
     @Test
@@ -173,7 +193,7 @@ class DoublyLinkedListTest {
         // given: the list is empty
         Assertions.assertEquals(0, list.getLength());
         // when: appending an array with three elements
-        double[] data = new double[]{0.9, 0.5, 0.4};
+        double[] data = new double[] { 0.9, 0.5, 0.4 };
         list.append(data);
         // then: the array representation of the list is equal to the appended array
         Assertions.assertArrayEquals(data, list.asArray());
@@ -206,12 +226,13 @@ class DoublyLinkedListTest {
     void testAppendOtherList() {
         // give: an empty list and another list with three elements
         Assertions.assertTrue(list.isEmpty());
-        var data = new double[]{0.9, 0.5, 0.4};
+        var data = new double[] { 0.9, 0.5, 0.4 };
         DoublyLinkedList otherList = new DoublyLinkedList();
         otherList.append(data);
         // when: appending the other list
         list.append(otherList);
-        // then: expect the list to contain the elements of the other list in the same order
+        // then: expect the list to contain the elements of the other list in the same
+        // order
         Assertions.assertArrayEquals(data, list.asArray());
     }
 
@@ -236,6 +257,7 @@ class DoublyLinkedListTest {
 
     /**
      * Helper method to test begin and end pointers of a doubly linked list
+     * 
      * @param list List to test
      */
     private static void testBeginEndPointers(DoublyLinkedList list) {
